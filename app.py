@@ -45,9 +45,14 @@ data_fetcher = EODHDAPIsDataFetcher(API_TOKEN)
 
 
 @app.route("/")
-def index():
+def exchanges():
     exchanges = data_fetcher.fetch_exchanges()
     return render_template("exchanges.html", exchanges=exchanges)
+
+@app.route("/exchange/<code>/markets")
+def exchange_markets(code):
+    markets = data_fetcher.fetch_exchange_markets(code)
+    return render_template("markets.html", markets=markets)
 
 
 if __name__ == "__main__":

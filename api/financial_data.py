@@ -17,3 +17,13 @@ class EODHDAPIsDataFetcher:
         except Exception as e:
             print(f"Error fetching data: {e}")
             return None
+
+    def fetch_exchange_markets(self, code: str = ""):
+        try:
+            api = APIClient(self._api_token)
+            df = api.get_exchange_symbols(code)
+            return json.loads(df.to_json(orient="records"))
+
+        except Exception as e:
+            print(f"Error fetching data: {e}")
+            return None
