@@ -49,10 +49,17 @@ def exchanges():
     exchanges = data_fetcher.fetch_exchanges()
     return render_template("exchanges.html", exchanges=exchanges)
 
-@app.route("/exchange/<code>/markets")
+
+@app.route("/exchange/<code>")
 def exchange_markets(code):
     markets = data_fetcher.fetch_exchange_markets(code)
-    return render_template("markets.html", markets=markets)
+    return render_template("markets.html", code=code, markets=markets)
+
+
+@app.route("/exchange/<code>/<market>/<granularity>")
+def exchange_market_data(code, market, granularity):
+    candles = data_fetcher.fetch_exchange_market_data(code, market, granularity)
+    return render_template("data.html", code=code, market=market, granularity=granularity, candles=candles)
 
 
 if __name__ == "__main__":

@@ -27,3 +27,15 @@ class EODHDAPIsDataFetcher:
         except Exception as e:
             print(f"Error fetching data: {e}")
             return None
+
+    def fetch_exchange_market_data(self, code: str = "", market: str = "", granularity: str = ""):
+        try:
+            api = APIClient(self._api_token)
+            df = api.get_historical_data(f"{market}.{code}", granularity)
+            df["datetime"] = df.index.astype(str)
+            print(df)
+            return json.loads(df.to_json(orient="records"))
+
+        except Exception as e:
+            print(f"Error fetching data: {e}")
+            return None

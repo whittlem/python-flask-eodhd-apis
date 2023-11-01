@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exchanges</title>
+    <title>{{ market }}.{{ code }} | {{ granularity }}</title>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -19,34 +19,38 @@
 
     <script>
         $(document).ready(function() {
-            $('#exchangesTable').DataTable();
+            $('#dataTable').DataTable();
         });
     </script>
 </head>
 
 <body>
     <div class="container">
-        <h1>Exchanges</h1>
-        <table id="exchangesTable" class="table table-sm table-light table-bordered table-hover table-striped">
+        <a href="/">Exchanges</a> > <a href="/exchange/{{ code }}">{{ code }}</a> > <b>{{ market }} {{ granularity }}</b>
+        <p />
+
+        <h1>{{ market }} {{ granularity }}</h1>
+        <table id="dataTable" class="table table-sm table-light table-bordered table-hover table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Code</th>
-                    <th>OperatingMIC</th>
-                    <th>Currency</th>
-                    <th>CountryISO2</th>
-                    <th>CountryISO3</th>
+                    
+                    <th>Timestamp</th>
+                    <th>Open</th>
+                    <th>High</th>
+                    <th>Low</th>
+                    <th>Close</th>
+                    <th>Volume</th>
                 </tr>
             </thead>
             <tbody>
-                {% for exchange in exchanges %}
+                {% for candle in candles %}
                     <tr>
-                        <td><a href="/exchange/{{ exchange.Code }}">{{ exchange.Name }}</a></td>
-                        <td>{{ exchange.Code }}</td>
-                        <td>{{ exchange.OperatingMIC }}</td>
-                        <td>{{ exchange.Currency }}</td>
-                        <td>{{ exchange.CountryISO2 }}</td>
-                        <td>{{ exchange.CountryISO3 }}</td>
+                        <td>{{ candle.datetime }}</td>
+                        <td>{{ candle.open }}</td>
+                        <td>{{ candle.high }}</td>
+                        <td>{{ candle.low }}</td>
+                        <td>{{ candle.close }}</td>
+                        <td>{{ candle.volume }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

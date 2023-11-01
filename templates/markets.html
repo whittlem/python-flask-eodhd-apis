@@ -26,10 +26,10 @@
 
 <body>
     <div class="container">
-        <a href="/">Exchanges</a> > <b>Exchange Markets</b>
+        <a href="/">Exchanges</a> > <b>{{ code }}</b>
         <p />
 
-        <h1>Exchange Markets</h1>
+        <h1>{{ code }}</h1>
         <table id="marketsTable" class="table table-sm table-light table-bordered table-hover table-striped">
             <thead>
                 <tr>
@@ -44,15 +44,15 @@
                 </tr>
             </thead>
             <tbody>
-                {% for market in markets %}
+                {% for item in markets %}
                     <tr>
-                        <td>{{ market.Code }}</td>
-                        <td>{{ market.Name }}</td>
-                        <td>{{ market.Country }}</td>
-                        <td>{{ market.Exchange }}</td>
-                        <td>{{ market.Currency }}</td>
-                        <td>{{ market.Type }}</td>
-                        <td>{{ market.Isin }}</td>
+                        <td><a href="/exchange/CC/{{ item.Code }}/1h">{{ item.Code }}</a></td>
+                        <td>{{ item.Name }}</td>
+                        <td>{{ item.Country }}</td>
+                        <td>{{ item.Exchange }}</td>
+                        <td>{{ item.Currency }}</td>
+                        <td>{{ item.Type }}</td>
+                        <td>{{ item.Isin }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
