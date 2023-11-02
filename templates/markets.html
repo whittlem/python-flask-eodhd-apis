@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>markets</title>
+    <title>{{ code }}</title>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -33,7 +33,7 @@
         <table id="marketsTable" class="table table-sm table-light table-bordered table-hover table-striped">
             <thead>
                 <tr>
-                    
+
                     <th>Code</th>
                     <th>Name</th>
                     <th>Country</th>
@@ -46,7 +46,7 @@
             <tbody>
                 {% for item in markets %}
                     <tr>
-                        <td><a href="/exchange/CC/{{ item.Code }}/1h">{{ item.Code }}</a></td>
+                        <td><a href="/exchange/{{ code }}/{{ item.Code }}/1h">{{ item.Code }}</a></td>
                         <td>{{ item.Name }}</td>
                         <td>{{ item.Country }}</td>
                         <td>{{ item.Exchange }}</td>
